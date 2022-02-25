@@ -217,6 +217,163 @@ Navigate to AWS console, under EC2 service, select Load Balancers
 
 Click on create load balancer and select the option “Application Load Balancer”
 
+ ![](/Images/Img36.PNG)
+
+Configured Load Balancer by entering the Load Balancer name (eg: WP-LB), choose the VPC (Target VPC) and select your public subnets (public-subnet-a, public-subnet-b) as seen below:
+
+ ![](/Images/Img37.PNG)
+
+ ![](/Images/Img38.PNG)
+
+Configured Security groups by choosing the LB-SG security group
+
+ ![](/Images/Img39.PNG)
+
+Configured routing, by selecting “Create Target Group”
+
+ ![](/Images/Img40.PNG)
+
+IP addresses based Target Group
+
+ ![](/Images/Img41.PNG)
+
+Provided name of the target group, select the Target VPC and registered the target successfully. 
+
+ ![](/Images/Img42.PNG)
+
+ ![](/Images/Img43.PNG)
+
+Finally the time has arrived to work on Elastic Container Service 
+
+### Elastic Container Service
+
+Started off by creating an ECS Cluster and selected “Networking only” then click on Next step
+
+ ![](/Images/Img44.PNG)
+
+In the Cluster configuration, provide the Cluster name (eg: wp-web-cluster) and check the box for “Enable Container Insights” to get in metrics through CloudWatch.  Then click on Create.
+
+ ![](/Images/Img45.PNG)
+
+The next step is to create an Amazon ECS Task Definition
+
+Navigate to ECS service and then go to Task Definitions and Create new Task Definition. Choose FARGATE. Then click on “Next step”
+
+ ![](/Images/Img46.PNG)
+
+Configure Task and Container definition by filling the following fields:
+ - Enter the Task Definition Name
+ - Select ecsTaskExecutionRole for both Task Role and Task execution role
+ - Select awsvpc for Network Mode
+ - In the Task size, enter the Task memory (GB) and Task CPU (Vcpu)
+
+ ![](/Images/Img47.PNG)
+
+Since we are going to mount the Amazon EFS volume to container, we need to add volume first to our task definition before adding the container. Go down to the bottom of the task definition page and click “Add Volume”. 
+
+In the “Add Volume”, provide a name for your volume (eg: wp-content) and select volume type as EFS. In the File system ID, select the EFS volume that was created earlier and enable “Transit encryption”. Then click on Add.
+
+ ![](/Images/Img48.PNG)
+
+Scroll up to container section and click on “Add container”
+
+ ![](/Images/Img49.PNG)
+
+Specify the Container name (eg: wp-wordpress-container) and Image (wordpress:latest – official image of Wordpress taken from docker hub marketplace). Enter Memory Limits and Port Mappings as seen below.
+
+ ![](/Images/Img50.PNG)
+
+Scroll down to the Environment variables section and configure parameters from the Parameter Store as seen below.
+
+ ![](/Images/Img51.PNG)
+
+ ![](/Images/Img52.PNG)
+
+In STORAGE AND LOGGING, select the mount point and specify the container path /var/www/html/wp-content. Wordpress files were copied into Amazon EFS file system path (/var/www/html/wp-content) which should be allowed for wordpress to pick these up. Go ahead and click on Create on the task definition page.
+
+ ![](/Images/Img53.PNG)
+
+Last step is to create an Amazon ECS Service.
+
+Navigate to your ECS cluster, click the Services tab and then select Create
+
+ ![](/Images/Img54.PNG)
+
+Configure the ECS Service by selecting the following configuration:
+ - Select the Task Definition that was configured earlier. 
+ - Select the Platform version to be LATEST
+ - Select the ECS cluster that was created earlier and provide name for your ECS Service (eg: wp-svc-appmig)
+ - Enter the number of tasks to be 2
+
+You can leave the rest as defaults and select Next step
+
+ ![](/Images/Img55.PNG)
+
+Configure Network
+ - Select the Target VPC and select the private subnets for your web service.
+ - Select ECS-Tasks-SG for your security group
+
+ ![](/Images/Img56.PNG)
+
+Select the Application Load Balancer and select the load balancer that was created earlier. Then click on add to load balancer to add the container name:port.
+
+ ![](/Images/Img57.PNG)
+
+ ![](/Images/Img58.PNG)
+
+Leave the service discovery integration unchecked. 
+
+ ![](/Images/Img59.PNG)
+
+Set Auto Scailing. 
+
+In the Auto scailing configuration, select the option “Configure Service Auto Scailing”. Enter the Minimum, Desired and Maximum number of tasks. 
+
+ ![](/Images/Img60.PNG)
+
+Select the Scaling policy to be Target Tracking, provide the Policy name, select the ECS service metric to be ALBRequestCountPerTarget and enter the Target value (eg: 300)
+
+ ![](/Images/Img61.PNG)
+
+Final step is to Create ECS Service
+
+Navigate to your Services under your ECS cluster, and you can see that wp-svc-appmig service is ACTIVE 
+
+ ![](/Images/Img62.PNG)
+
+You should also be able to see that your tasks are in a RUNNING state. 
+
+To test your target website, navigate to your loadbalancer, grab the loadbalancer DNS and paste it on your web browser. In the screenshot below, you can see that Wordpress website loaded successfully which confirms that my web service is being hosted on Containers.  
+
+ ![](/Images/Img63.PNG)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
