@@ -245,7 +245,7 @@ Provided name of the target group, select the Target VPC and registered the targ
 
 Finally the time has arrived to work on Elastic Container Service 
 
-### Elastic Container Service
+#### Elastic Container Service
 
 Started off by creating an ECS Cluster and selected “Networking only” then click on Next step
 
@@ -335,7 +335,7 @@ Select the Scaling policy to be Target Tracking, provide the Policy name, select
 
  ![](/Images/Img61.PNG)
 
-Final step is to Create ECS Service
+Finally the ECS service has been created. 
 
 Navigate to your Services under your ECS cluster, and you can see that wp-svc-appmig service is ACTIVE 
 
