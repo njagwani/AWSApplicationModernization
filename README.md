@@ -49,8 +49,51 @@ Give a name to your ec2 web sever by adding a tag. Add a tag by following the st
 
 ![](/Images/Img6.PNG)
 
+Configure your Security Group, Select the option “Create a new Security group”, provide a security group name (eg: SSH and HTTP access) and provide a short description (eg: Allowed SSH and HTTP access to this instance from anywhere (0.0.0.0/0).
 
+![](/Images/Img7.PNG)
 
+Review Instance Launch Page and then selected “Launch” at the bottom right to bring up the ec2 instance. In the below screenshot, you can see that my ec2 instance is running well (2/2 checks passed)
+
+![](/Images/Img8.PNG)
+
+### Stage 3 - Create an RDS instance to setup your wordpress website.
+
+Navigate to RDS service and then click on “Create Database”. Select the Engine type to be MySQL and select the image version to be MySQL 5.7.22. 
+
+![](/Images/Img9.PNG)
+
+Select the template type to be of Free tier
+
+![](/Images/Img10.PNG)
+
+Under Settings, provide the name for DB instance identifier (eg: wordpress-DB, Master username (eg: admin), Master password (eg:set your own password)
+
+![](/Images/Img11.PNG)
+
+Select your DB instance class size to be “Burstable classes” – db.t2.micro
+
+![](/Images/Img12.PNG)
+
+For your VPC, select your Target VPC (eg: Word Press Fargate Base Infrastructure VPC) and select your subnet group associate with your database (eg: wp-db-subnet-group, this db subnet group should have already been created when you created your cloudformation stack), Under existing security groups, select your RDS security group and provide an availability zone. 
+
+![](/Images/Img13.PNG)
+
+Provide the name of your Database (eg: wpdatabase) and save it as you will need this info to install wordpress. 
+
+![](/Images/Img14.PNG)
+
+Navigate to RDS instance security group to allow traffic from your ec2 instance to your RDS instance over TCP port 3306. Under inbound rules, select the Target Type = MySQL/Aurora and Source = Security Group of your EC2 web server instance. 
+
+![](/Images/Img15.PNG)
+
+Head over to your web server EC2 instance and grab the DNS and then paste in your web browser.
+
+![](/Images/Img16.PNG)
+
+The following page will appear, then select “Let’s go!”
+
+![](/Images/Img17.PNG)
 
 
 
