@@ -5,9 +5,9 @@ Welcome to my AWS Application Modernization Project that will guide you on how t
 - AWS Account
 - IAM Roles for running EC2 Instances, ECS Tasks
 
-Lets go ahead and get started. 
+#### Lets Begin!!! 
 
-Stage 1 - Build AWS Core Infrastructure
+### Stage 1 - Build AWS Core Infrastructure
 
 We first need to build our Core Infrastructure. Navigate to AWS CloudFormation Service and Select Create Stack. Under Create Stack configurtion, Select the option “upload a template file”, then select Choose file to add your cloudformation yaml template (eg: appmodernization-cloudformation.yaml) and then create a stack. You can find the appmodernization-cloudformation.yaml in this repository. 
 ![](/Images/Img1.PNG)
@@ -23,8 +23,7 @@ Cloudformation template “appmodernization-cloudformation.yaml” will then cre
 - 2 NatGateways (one in each availability zone)
 
 Once your core infrastructure is ready, lets then create an EC2 instance.
-
-Stage 2 - Create an EC2 instance to host your Wordpress Web Service
+### Stage 2 - Create an EC2 instance to host your Wordpress Web Service
 
 Navigate to EC2 service, Click on Instances and then select “Launch Instance”, Select Amazon Linux 2 AMI 64-bit(x86) as your image
 
