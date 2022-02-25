@@ -4,7 +4,7 @@ Welcome to my AWS Application Modernization Project that will guide you on how t
 ### Pre-requisites for this project
 - AWS Account
 - IAM Roles for running EC2 Instances, ECS Tasks
-### AWS Applicaiton Migration Architecture 
+### AWS Application Migration Architecture 
 
 ![](/Images/AWSNetworkDiagram.PNG)
 
