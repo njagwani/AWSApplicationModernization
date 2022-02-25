@@ -9,10 +9,18 @@ Lets go ahead and get started.
 
 Stage 1 - Build AWS Core Infrastructure
 
-We first need to build our Core Infrastructure. Navigate to AWS CloudFormation Service and Select #### Create Stack. Under Create Stack configurtion, Select the option “upload a template file”, then select Choose file to add your cloudformation yaml template (eg: appmodernization-cloudformation.yaml) and then create a stack. You can find the appmodernization-cloudformation.yaml in this repository. 
+We first need to build our Core Infrastructure. Navigate to AWS CloudFormation Service and Select Create Stack. Under Create Stack configurtion, Select the option “upload a template file”, then select Choose file to add your cloudformation yaml template (eg: appmodernization-cloudformation.yaml) and then create a stack. You can find the appmodernization-cloudformation.yaml in this repository. 
 ![](/Images/Img1.PNG)
 
-Cloudformation template “appmodernization-cloudformation.yaml” will then create a VPC with 2 Public Subnets, 2 Private Subnets for Web server, 2 Private Subnets for DB, 2 Elastic IP's, 1 InternetGateway, 2 NatGateways (one in each availability zone). 
+Cloudformation template “appmodernization-cloudformation.yaml” will then create the following:
+
+- 1 VPC CIDR 172.31.0.0/16
+- 2 Public Subnets (one in each availability zone)
+- 2 Private Subnets for Web server (one in each availability zone)
+- 2 Private Subnets for DB (one in each availability zone)
+- 2 Elastic IP's
+- 1 InternetGateway
+- 2 NatGateways (one in each availability zone)
 
 Once your core infrastructure is ready, lets then create an EC2 instance.
 
@@ -28,9 +36,9 @@ Select the size of the instance to be t2.micro (part of free tier).
 
 Under Configure instance details, configure the details as seen below:
 
-Network: Target VPC (eg: Word Press Fargate Base Infrastructure)
-Subnet: Subnet-Word Press Fargate Base infrastructure-private-web-a
-Auto-assign Public IP: Enable 
+- Network: Target VPC (eg: Word Press Fargate Base Infrastructure)
+- Subnet: Subnet-Word Press Fargate Base infrastructure-private-web-a
+- Auto-assign Public IP: Enable 
 
 ![](/Images/Img4.PNG)
 
