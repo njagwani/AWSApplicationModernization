@@ -57,7 +57,7 @@ Review Instance Launch Page and then selected “Launch” at the bottom right t
 
 ![](/Images/Img8.PNG)
 
-### Stage 3 - Create an RDS instance to setup your wordpress website.
+### Stage 3 - Create an RDS instance to setup your Wordpress website.
 
 Navigate to RDS service and then click on “Create Database”. Select the Engine type to be MySQL and select the image version to be MySQL 5.7.22. 
 
@@ -75,11 +75,11 @@ Select your DB instance class size to be “Burstable classes” – db.t2.micro
 
 ![](/Images/Img12.PNG)
 
-For your VPC, select your Target VPC (eg: Word Press Fargate Base Infrastructure VPC) and select your subnet group associate with your database (eg: wp-db-subnet-group, this db subnet group should have already been created when you created your cloudformation stack), Under existing security groups, select your RDS security group and provide an availability zone. 
+For your VPC, select your Target VPC (eg: Word Press Fargate Base Infrastructure VPC) and select your subnet group associated with your database (eg: wp-db-subnet-group, this db subnet group should have already been created when you created your cloudformation stack), Under existing security groups, select your RDS security group and provide an availability zone. 
 
 ![](/Images/Img13.PNG)
 
-Provide the name of your Database (eg: wpdatabase) and save it as you will need this info to install wordpress. 
+Provide the name of your Database (eg: wpdatabase) and save the DB name as you will need this for installing your wordpress website.
 
 ![](/Images/Img14.PNG)
 
@@ -94,6 +94,29 @@ Head over to your web server EC2 instance and grab the DNS and then paste in you
 The following page will appear, then select “Let’s go!”
 
 ![](/Images/Img17.PNG)
+
+You will get the page to enter the following details:
+- Database Name = Initial Database Name (taken from RDS); wp-database in my case
+- Database Host = RDS instance end-point (After creating an RDS instance, you will be able to retrieve the RDS end-point from AWS console)
+- DB username = admin (in my case)
+- DB password = Password provided when configuring RDS instance
+- Table Prefix = wp_
+
+Once you have entered all the above details, go ahead and click on “Submit”
+
+![](/Images/Img18.PNG)
+
+You will then be taken to the page which looks like below. Copy the contents on the file. 
+
+![](/Images/Img19.PNG)
+
+SSH into your ec2 web server instance, go to path /var/www/html and create a file wp-config.php. Paste the content from the file and paste it here onto wp-config.php.
+
+![](/Images/Img20.PNG)
+
+After you have finished pasting the script on your ec2 instance, go back to the wordpress web page and select “Run the installation”. Once the installation is successful, I was then able to login to my wordpress website successfully without any errors.
+
+![](/Images/Img21.PNG)
 
 
 
