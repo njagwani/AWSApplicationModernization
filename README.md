@@ -1,14 +1,26 @@
 # AWSApplicationModernization
 
-Welcome to my AWS Application Modernization Project that will guide you on how to create a Wordpress website using EC2 instance and RDS instance. Once you have confirmed that your Wordpress website is running well, we will then migrate the Wordpress web service to Containers with help of ECS Fargate Services.
+Welcome to my AWS Application Modernization Project.
+
+This page guide you on how to create a Wordpress website using EC2 instance and RDS instance. Once you have confirmed that your Wordpress website is running well, you will then migrate the Wordpress web service to Containers with help of ECS Fargate Services.
+
+## Key Takeaways!
+
+1. Create your AWS core infrastructure using Cloud formation template.
+2. Deploy your web service on EC2 instance and associate your DB with RDS instance.
+3. How to work around creating Security groups and add necessary rules to route traffic securely. 
+4. Deploy an Elastic File System and Application Load Balancer to be associated with your Containers. 
+5. Using AWS Systems Manager to store your database credentials.
+6. Deploy and Migrate current running webservice on ec2 instances to containers using Elastic Container Service (Fargate) by creating ECS tas
 ### Pre-requisites for this project
+
 - AWS Account
 - IAM Roles for running EC2 Instances, ECS Tasks
-### AWS Application Migration Architecture 
+### AWS Application Migration Architecture  Diagram 
 
 ![](/Images/AWSNetworkDiagram.PNG)
 
-### Lets Begin!!! 
+## Lets Begin!!! 
 ### Stage 1 - Build AWS Core Infrastructure
 
 We first need to build our Core Infrastructure. Navigate to AWS CloudFormation Service and Select Create Stack. Under Create Stack configurtion, Select the option “upload a template file”, then select Choose file to add your cloudformation yaml template (eg: appmodernization-cloudformation.yaml) and then create a stack. You can find the appmodernization-cloudformation.yaml in this repository. 
@@ -197,7 +209,7 @@ Ran the following command to mount Amazon EFS file system on a Linux Instance. P
  Since we will be using the official wordpress docker image with RDS database, we will need to provide the database credentials, database name and server details for the wordpress configuration. 
 
  The best platform to use these parameters is the AWS Systems Manager Parameter Store instead of storing them inside the docker image or ECS task definition. 
-#### AWS Systems Manager to store your database credentials
+#### Using AWS Systems Manager to store your database credentials
 
  Navigate to AWS console and search for AWS Systems manager and then select Parameter Store
 
