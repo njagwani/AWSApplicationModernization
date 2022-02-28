@@ -10,7 +10,7 @@ This page guide you on how to create a Wordpress website using EC2 instance and 
 2. Deploy your web service on EC2 instance and associate your DB with RDS instance.
 3. How to work around creating Security groups and add necessary rules to route traffic securely. 
 4. Deploy an Elastic File System and Application Load Balancer to be associated with your Containers. 
-5. Using AWS Systems Manager to store your database credentials.
+5. How to use AWS Systems Manager to store your database credentials.
 6. Deploy and Migrate current running webservice on ec2 instances to containers using Elastic Container Service (Fargate) by creating ECS tas
 ### Pre-requisites for this project
 
