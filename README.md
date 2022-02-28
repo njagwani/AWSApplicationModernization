@@ -19,8 +19,7 @@ This page guide you on how to create a Wordpress website using EC2 instance and 
 ## AWS Application Migration Architecture  Diagram 
 
 ![](/Images/AWSNetworkDiagram.PNG)
-
-### Lets Begin!!! ###
+## Lets Begin!!!
 ### Stage 1 - Build AWS Core Infrastructure
 
 We first need to build our Core Infrastructure. Navigate to AWS CloudFormation Service and Select Create Stack. Under Create Stack configurtion, Select the option “upload a template file”, then select Choose file to add your cloudformation yaml template (eg: appmodernization-cloudformation.yaml) and then create a stack. You can find the appmodernization-cloudformation.yaml in this repository. 
