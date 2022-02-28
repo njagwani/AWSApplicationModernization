@@ -4,7 +4,7 @@ Welcome to my AWS Application Modernization Project.
 
 This page guide you on how to create a Wordpress website using EC2 instance and RDS instance. Once you have confirmed that your Wordpress website is running well, you will then migrate the Wordpress web service to Containers with help of ECS Fargate Services.
 
-## Key Takeaways!
+## Key Learnings and Takeaways!!!
 
 1. Create your AWS core infrastructure using Cloud formation template.
 2. Deploy your web service on EC2 instance and associate your DB with RDS instance.
@@ -16,11 +16,11 @@ This page guide you on how to create a Wordpress website using EC2 instance and 
 
 - AWS Account
 - IAM Roles for running EC2 Instances, ECS Tasks
-### AWS Application Migration Architecture  Diagram 
+## AWS Application Migration Architecture  Diagram 
 
 ![](/Images/AWSNetworkDiagram.PNG)
 
-## Lets Begin!!! 
+### Lets Begin!!! ###
 ### Stage 1 - Build AWS Core Infrastructure
 
 We first need to build our Core Infrastructure. Navigate to AWS CloudFormation Service and Select Create Stack. Under Create Stack configurtion, Select the option “upload a template file”, then select Choose file to add your cloudformation yaml template (eg: appmodernization-cloudformation.yaml) and then create a stack. You can find the appmodernization-cloudformation.yaml in this repository. 
