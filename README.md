@@ -1,6 +1,5 @@
-# AWSApplicationModernization
-
-Welcome to my AWS Application Modernization Project.
+# AWS Application Modernization
+### Welcome to my AWS Application Modernization Project.
 
 This page guide you on how to create a Wordpress website using EC2 instance and RDS instance. Once you have confirmed that your Wordpress website is running well, you will then migrate the Wordpress web service to Containers with help of ECS Fargate Services.
 
